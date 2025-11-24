@@ -1,0 +1,10 @@
+body { font-family: Arial, sans-serif; margin: 10px; padding: 0;}
+.container { max-width: 1000px; margin: 0 auto; }
+.topnav { margin-bottom: 10px; }
+table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+table, th, td { border: 1px solid #ccc; padding: 6px; }
+th { background: #f4f4f4; }
+input, textarea, select { width: 100%; padding: 6px; margin-bottom: 6px; box-sizing: border-box; }
+label { display: block; font-weight: bold; margin-top: 6px; }
+button { padding: 8px 12px; }
+div.error { color: red; }

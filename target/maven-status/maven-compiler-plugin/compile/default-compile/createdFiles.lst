@@ -1,0 +1,9 @@
+com\example\p2gestaoalunos\repository\AlunoRepository.class
+com\example\p2gestaoalunos\P2GestaoAlunosApplication.class
+com\example\p2gestaoalunos\controller\CursoController.class
+com\example\p2gestaoalunos\config\DataLoader.class
+com\example\p2gestaoalunos\repository\CursoRepository.class
+com\example\p2gestaoalunos\model\Curso.class
+com\example\p2gestaoalunos\model\Aluno.class
+com\example\p2gestaoalunos\controller\HomeController.class
+com\example\p2gestaoalunos\controller\AlunoController.class

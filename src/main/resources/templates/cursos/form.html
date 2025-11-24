@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Formulário Curso</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+  </head>
+  <body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <h1 th:text="${curso.id} != null ? 'Editar Curso' : 'Novo Curso'"></h1>
+
+    <form th:action="@{/cursos/salvar}" th:object="${curso}" method="post">
+      <input type="hidden" th:if="${curso.id != null}" th:field="*{id}"/>
+      <div>
+        <label>Nome</label>
+        <input type="text" th:field="*{nome}" />
+        <div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+      </div>
+
+      <div>
+        <label>Carga Horária</label>
+        <input type="number" th:field="*{cargaHoraria}" />
+        <div th:if="${#fields.hasErrors('cargaHoraria')}" th:errors="*{cargaHoraria}"></div>
+      </div>
+
+      <div>
+        <label>Descrição</label>
+        <textarea th:field="*{descricao}"></textarea>
+      </div>
+
+      <div>
+        <button type="submit">Salvar</button>
+        <a href="/cursos">Cancelar</a>
+      </div>
+    </form>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+  </body>
+</html>

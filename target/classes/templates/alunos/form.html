@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Formulário Aluno</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+  </head>
+  <body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <h1 th:text="${aluno.id} != null ? 'Editar Aluno' : 'Novo Aluno'"></h1>
+
+    <form th:action="@{/alunos/salvar}" th:object="${aluno}" method="post">
+      <input type="hidden" th:if="${aluno.id != null}" th:field="*{id}"/>
+      <div>
+        <label>Nome</label>
+        <input type="text" th:field="*{nome}" />
+        <div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+      </div>
+
+      <div>
+        <label>Matrícula</label>
+        <input type="text" th:field="*{matricula}" />
+        <div th:if="${#fields.hasErrors('matricula')}" th:errors="*{matricula}"></div>
+      </div>
+
+      <div>
+        <label>Email</label>
+        <input type="email" th:field="*{email}" />
+        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+      </div>
+
+      <div>
+        <label>Curso</label>
+        <select th:field="*{curso}" >
+          <option th:each="c : ${cursos}"
+            th:value="${c.id}"
+            th:text="${c.nome}">Curso</option>
+        </select>
+        <div th:if="${#fields.hasErrors('curso')}" th:errors="*{curso}"></div>
+      </div>
+
+      <div>
+        <button type="submit">Salvar</button>
+        <a href="/alunos">Cancelar</a>
+      </div>
+    </form>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+  </body>
+</html>
