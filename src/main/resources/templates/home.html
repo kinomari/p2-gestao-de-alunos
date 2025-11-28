@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${titulo}">Home</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<main>
+    <section class="conteudo home-content">
+            <div class="home-section">
+                <div class="gif-container">
+                    <div class="gif-placeholder">
+                         <h1> Bem-vindo ao Sistema de Gestão de Alunos</h1>
+                        <img src="/imagens/foquinha.gif" class="gif-fade" alt="Foquinha kawaii (•⩊• っ)3" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="home-features">
+            <h2>Funcionalidades Principais</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Gestão de Alunos</h3>
+                    <p>Cadastre, edite e remova informações dos alunos com facilidade</p>
+                    <a href="/alunos" class="feature-link">Ir para Alunos →</a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎓</div>
+                    <h3>Gestão de Cursos</h3>
+                    <p>Crie e gerencie cursos com carga horária e descrição</p>
+                    <a href="/cursos" class="feature-link">Ir para Cursos →</a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Dados Organizados</h3>
+                    <p>Visualize todas as informações de forma clara e organizada</p>
+                    <a href="/alunos" class="feature-link">Ver Dashboard →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="home-cta">
+            <h2>Comece Agora</h2>
+            <p>Escolha uma das opções abaixo para começar a usar o sistema:</p>
+            <div class="cta-buttons">
+                <a href="/alunos" class="cta-button primary">Gerenciar Alunos</a>
+                <a href="/cursos" class="cta-button secondary">Gerenciar Cursos</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

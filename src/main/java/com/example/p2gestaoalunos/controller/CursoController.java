@@ -20,31 +20,39 @@ public class CursoController {
     @GetMapping
     public String listar(Model model) {
         model.addAttribute("cursos", cursoRepo.findAll());
+        model.addAttribute("titulo", "Lista de Cursos");
         return "cursos/list";
     }
 
     @GetMapping("/novo")
     public String novoForm(Model model) {
         model.addAttribute("curso", new Curso());
+        model.addAttribute("titulo", "Novo Curso");
         return "cursos/form";
     }
 
     @PostMapping("/salvar")
-    public String salvar(@Valid @ModelAttribute Curso curso, BindingResult result) {
-        if (result.hasErrors()) return "cursos/form";
-        cursoRepo.save(curso);
+    public String salvar(@Valid @ModelAttribute Curso curso, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("titulo", "Erro ao salvar curso");
+            return "cursos/form";
+        }
+        if (curso != null) {
+            cursoRepo.save(curso);
+        }
         return "redirect:/cursos";
     }
 
     @GetMapping("/editar/{id}")
-    public String editar(@PathVariable Long id, Model model) {
+    public String editar(@PathVariable long id, Model model) {
         Curso c = cursoRepo.findById(id).orElseThrow();
         model.addAttribute("curso", c);
+        model.addAttribute("titulo", "Editar Curso");
         return "cursos/form";
     }
 
     @GetMapping("/excluir/{id}")
-    public String excluir(@PathVariable Long id) {
+    public String excluir(@PathVariable long id) {
         cursoRepo.deleteById(id);
         return "redirect:/cursos";
     }

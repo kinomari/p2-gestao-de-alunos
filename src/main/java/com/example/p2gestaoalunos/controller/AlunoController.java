@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/alunos")
 public class AlunoController {
+
     private final AlunoRepository alunoRepo;
     private final CursoRepository cursoRepo;
 
@@ -23,6 +24,7 @@ public class AlunoController {
     @GetMapping
     public String listar(Model model) {
         model.addAttribute("alunos", alunoRepo.findAll());
+        model.addAttribute("titulo", "Lista de Alunos");
         return "alunos/list";
     }
 
@@ -30,34 +32,43 @@ public class AlunoController {
     public String novoForm(Model model) {
         model.addAttribute("aluno", new Aluno());
         model.addAttribute("cursos", cursoRepo.findAll());
+        model.addAttribute("titulo", "Novo Aluno");
         return "alunos/form";
     }
 
     @PostMapping("/salvar")
-    public String salvar(@Valid @ModelAttribute Aluno aluno, BindingResult result, Model model) {
+    public String salvar(@Valid @ModelAttribute Aluno aluno,
+                         BindingResult result,
+                         Model model) {
+
         if (result.hasErrors()) {
             model.addAttribute("cursos", cursoRepo.findAll());
+            model.addAttribute("titulo", "Erro ao salvar aluno");
             return "alunos/form";
         }
+
         if (alunoRepo.existsByMatricula(aluno.getMatricula())) {
             result.rejectValue("matricula", "error.aluno", "Matrícula já cadastrada");
             model.addAttribute("cursos", cursoRepo.findAll());
+            model.addAttribute("titulo", "Erro ao salvar aluno");
             return "alunos/form";
         }
+
         alunoRepo.save(aluno);
         return "redirect:/alunos";
     }
 
     @GetMapping("/editar/{id}")
-    public String editar(@PathVariable Long id, Model model) {
-        Aluno a = alunoRepo.findById(id).orElseThrow();
-        model.addAttribute("aluno", a);
+    public String editar(@PathVariable long id, Model model) {
+        Aluno aluno = alunoRepo.findById(id).orElseThrow();
+        model.addAttribute("aluno", aluno);
         model.addAttribute("cursos", cursoRepo.findAll());
+        model.addAttribute("titulo", "Editar Aluno");
         return "alunos/form";
     }
 
     @GetMapping("/excluir/{id}")
-    public String excluir(@PathVariable Long id) {
+    public String excluir(@PathVariable long id) {
         alunoRepo.deleteById(id);
         return "redirect:/alunos";
     }

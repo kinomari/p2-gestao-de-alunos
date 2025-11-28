@@ -1,33 +1,39 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <title>Alunos</title>
-    <meta charset="UTF-8"/>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${titulo}">Alunos</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
-  </head>
-  <body>
-    <div th:replace="~{fragments/header :: header}"></div>
+</head>
+<body>
 
-    <h1>Alunos</h1>
-    <a href="/alunos/novo">Novo Aluno</a>
-    <table>
-      <thead>
-        <tr><th>Nome</th><th>Matricula</th><th>Email</th><th>Curso</th><th>Ações</th></tr>
-      </thead>
-      <tbody>
-        <tr th:each="aluno : ${alunos}">
-          <td th:text="${aluno.nome}">Nome</td>
-          <td th:text="${aluno.matricula}">Mat</td>
-          <td th:text="${aluno.email}">email</td>
-          <td th:text="${aluno.curso != null ? aluno.curso.nome : '—'}">curso</td>
-          <td>
-            <a th:href="@{|/alunos/editar/${aluno.id}|}">Editar</a> |
-            <a th:href="@{|/alunos/excluir/${aluno.id}|}" onclick="return confirm('Excluir?')">Excluir</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+<div th:replace="fragments/header :: header"></div>
 
-    <div th:replace="~{fragments/footer :: footer}"></div>
-  </body>
+<main>
+    <section class="conteudo">
+        <h1>Alunos</h1>
+        <a href="/alunos/novo">Novo Aluno</a>
+        <table>
+          <thead>
+            <tr><th>Nome</th><th>Matricula</th><th>Email</th><th>Curso</th><th>Ações</th></tr>
+          </thead>
+          <tbody>
+            <tr th:each="aluno : ${alunos}">
+              <td th:text="${aluno.nome}">Nome</td>
+              <td th:text="${aluno.matricula}">Mat</td>
+              <td th:text="${aluno.email}">email</td>
+              <td th:text="${aluno.curso != null ? aluno.curso.nome : '—'}">curso</td>
+              <td>
+                <a th:href="@{|/alunos/editar/${aluno.id}|}">Editar</a> |
+                <a th:href="@{|/alunos/excluir/${aluno.id}|}" onclick="return confirm('Excluir?')">Excluir</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </section>
+</main>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
 </html>

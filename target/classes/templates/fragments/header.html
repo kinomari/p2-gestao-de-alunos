@@ -1,9 +1,12 @@
-<div th:fragment="header">
-  <nav class="topnav">
-    <a href="/">Home</a> |
-    <a href="/alunos">Alunos</a> |
-    <a href="/cursos">Cursos</a>
-  </nav>
-  <hr/>
-  <div class="container">
-</div>
+<header th:fragment="header" class="navbar">
+  <div class="navbar-container">
+    <div class="navbar-brand">
+      <a href="/" class="logo">(•⩊• っ)3 Gestão de Alunos</a>
+    </div>
+    <nav class="navbar-nav">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/alunos" class="nav-link">Alunos</a>
+      <a href="/cursos" class="nav-link">Cursos</a>
+    </nav>
+  </div>
+</header>
