@@ -156,4 +156,4 @@ Este mini-projeto serve para praticar:
 
 ---
 
-[Link do projetinho no yt!]()
+[Link do projetinho no yt!](https://youtu.be/VTLC7z1P5wU)
